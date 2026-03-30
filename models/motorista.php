@@ -12,6 +12,7 @@ class Motorista {
     private $num_cnh;
     private $idade;
     private $carros = [];
+    private $pontos_cnh;
 
     public function __construct(
         string $cpf_cnpj,

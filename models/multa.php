@@ -47,13 +47,13 @@ class Multa {
     }
 
     public function setMotorista(Motorista $motorista) {
-        $this->motorista = $motorista;
+        $this->id_motorista = $motorista;
     }
     public function setCarro(Carro $carro) {
-        $this->carro = $carro;
+        $this->id_carro = $carro;
     }
     public function setPolicial(Policial $policial) {
-        $this->policial = $policial;
+        $this->id_policial = $policial;
     }
 
     public function getDescricao(){
