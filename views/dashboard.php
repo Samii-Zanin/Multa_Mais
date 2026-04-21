@@ -197,7 +197,7 @@ require_once __DIR__ . '/../auth/verificar_login.php';
             <div class="grid-2">
                 <div class="field full">
                     <label>Modelo</label>
-                    <input type="text" name="nome" placeholder="Modelo do veículo" required>
+                    <input type="text" name="modelo" placeholder="Modelo do veículo" required>
                 </div>
                 <div class="field">
                     <label>Marca</label>
@@ -213,7 +213,7 @@ require_once __DIR__ . '/../auth/verificar_login.php';
                 </div>
                 <div class="field">
                     <label>Motorista</label>
-                    <input type="number" name="cpf_motorista" placeholder="CPF do Motorista Proprietário do Veículo" required>
+                    <input type="text" name="cpf_cnh" placeholder="CPF do Motorista Proprietário do Veículo" required>
                 </div>
             </div>
 

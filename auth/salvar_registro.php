@@ -10,7 +10,7 @@ $cargo = $_POST['cargo'];
 $local_servico = $_POST['local_servico'];
 $departamento = $_POST['departamento'];
 
-
+$cpf = preg_replace('/[^0-9]/', '', $cpf);
 
 $senhaHash = password_hash($senha, PASSWORD_DEFAULT);
 

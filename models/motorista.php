@@ -1,8 +1,6 @@
 <?php
 
 require_once __DIR__ . '/../config/conexao.php';
-
-
 class Motorista {
 
     private $id;
@@ -42,9 +40,50 @@ class Motorista {
     public function getId(){
         return $this->id;
     }
-    public function save(){
-        $conexao = Conexao::getConexao();
 
+    public static function getIdByCpfOrCnh(string $cpf_cnh) {
+    $conexao = Conexao::getConexao();
+
+    $stmt = $conexao->prepare("
+        SELECT id FROM motoristas WHERE cpf_cnpj = ? OR num_cnh = ? LIMIT 1
+    ");
+    $stmt->bind_param("ss", $cpf_cnh, $cpf_cnh);
+    $stmt->execute();
+    $resultado = $stmt->get_result();
+    $stmt->close();
+
+    if ($resultado->num_rows === 1) {
+        $dados = $resultado->fetch_assoc();
+        return $dados['id'];
+    }
+
+    return null;
+    }
+
+    public function validaMotorista($cpf, $num_cnh){
+        $erro_motorista = "CPF ou CNH já cadastrados para outro motorista.";
+
+        $conexao = Conexao::getConexao();
+        $stmt = $conexao->prepare("
+        SELECT * FROM motoristas WHERE cpf_cnpj = ? OR num_cnh = ?
+        ");
+        $stmt->bind_param("ss", $cpf, $num_cnh);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if ($result->num_rows > 0) {
+            return $erro_motorista;
+        }
+            return true;
+    }
+    public function save(){
+         
+        $validacao = $this->validaMotorista($this->cpf_cnpj, $this->num_cnh);
+
+        if ($validacao !== true) {
+            return $validacao; 
+        }
+        $conexao = Conexao::getConexao();
+        
         $stmt = $conexao->prepare("
             INSERT INTO motoristas (cpf_cnpj, nome, email, num_cnh, idade, pontos_cnh)
 
@@ -66,6 +105,6 @@ class Motorista {
         $this->id = $conexao->insert_id;
 
         $stmt->close();
-    }
+        return true;
+    }}
 
-}

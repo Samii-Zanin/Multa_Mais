@@ -21,29 +21,29 @@ session_start();
         const senha = document.getElementById("senha").value;
         let valido = true;
 
-        // — tamanho —
-        if (senha.length < 8) {
-            document.getElementById("erro-senha1").style.display = "block";
-            valido = false;
-        } else {
-            document.getElementById("erro-senha1").style.display = "none";
-        }
+        // // — tamanho —
+        // if (senha.length < 8) {
+        //     document.getElementById("erro-senha1").style.display = "block";
+        //     valido = false;
+        // } else {
+        //     document.getElementById("erro-senha1").style.display = "none";
+        // }
 
-        // — maiúscula —
-        if (!/[A-Z]/.test(senha)) {
-            document.getElementById("erro-senha2").style.display = "block";
-            valido = false;
-        } else {
-            document.getElementById("erro-senha2").style.display = "none";
-        }
+        // // — maiúscula —
+        // if (!/[A-Z]/.test(senha)) {
+        //     document.getElementById("erro-senha2").style.display = "block";
+        //     valido = false;
+        // } else {
+        //     document.getElementById("erro-senha2").style.display = "none";
+        // }
 
-        // — caractere especial —
-        if (!/[!@#$%^&*(),.?":{}|<>_\-\[\]=+;]/.test(senha)) {
-            document.getElementById("erro-senha3").style.display = "block";
-            valido = false;
-        } else {
-            document.getElementById("erro-senha3").style.display = "none";
-        }
+        // // — caractere especial —
+        // if (!/[!@#$%^&*(),.?":{}|<>_\-\[\]=+;]/.test(senha)) {
+        //     document.getElementById("erro-senha3").style.display = "block";
+        //     valido = false;
+        // } else {
+        //     document.getElementById("erro-senha3").style.display = "none";
+        // }
 
         return valido;
     }

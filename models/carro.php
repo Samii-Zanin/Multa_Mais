@@ -8,12 +8,12 @@ class Carro {
     private $ano;
     private $motorista;
 
-    public function __construct($modelo, $marca, $placa, $ano, $motorista = null) {
+    public function __construct($modelo, $marca, $placa, $ano, $motorista_id = null) {
         $this->modelo = $modelo;
         $this->marca = $marca;
         $this->placa = $placa;
         $this->ano = $ano;
-        $this->motorista = $motorista;
+        $this->motorista_id = $motorista_id;
     }
     public function getModelo() {
         return $this->modelo;
@@ -42,17 +42,10 @@ class Carro {
             INSERT INTO carros (modelo, marca, placa, ano, motorista_id)
             VALUES (?, ?, ?, ?, ?)
         ");
-        $motorista_id = $this->motorista ? $this->motorista->getId() : null;
 
-        $stmt->bind_param(
-        "sssii",
-        $this->modelo,
-        $this->marca,
-        $this->placa,
-        $this->ano,
-        $motorista_id
-    );
+        $stmt->bind_param("sssii", $this->modelo, $this->marca, $this->placa, $this->ano, $this->motorista_id);
         $stmt->execute();
         $stmt->close();
+        return true;
 }
 }
