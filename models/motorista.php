@@ -8,7 +8,8 @@ class Motorista {
     private $name;
     private $email;
     private $num_cnh;
-    private $idade;
+    private $data_nascimento;
+    private $validade_cnh;
     private $carros = [];
     private $pontos_cnh;
 
@@ -18,14 +19,16 @@ class Motorista {
         string $email,
         string $num_cnh,
         int $pontos_cnh,
-        int $idade
+        string $data_nascimento,
+        string $validade_cnh
     ){
         $this->cpf_cnpj = $cpf_cnpj;
         $this->name = $name;
         $this->email = $email;
         $this->num_cnh = $num_cnh;
         $this->pontos_cnh = $pontos_cnh;
-        $this->idade = $idade;
+        $this->data_nascimento = $data_nascimento;
+        $this->validade_cnh = $validade_cnh;
     }
 
     public function add_carro(Carro $carro){
@@ -39,6 +42,10 @@ class Motorista {
 
     public function getId(){
         return $this->id;
+    }
+
+    public function getValidadeCnh(){
+        return $this->validade_cnh;
     }
 
     public static function getIdByCpfOrCnh(string $cpf_cnh) {
@@ -85,19 +92,20 @@ class Motorista {
         $conexao = Conexao::getConexao();
         
         $stmt = $conexao->prepare("
-            INSERT INTO motoristas (cpf_cnpj, nome, email, num_cnh, idade, pontos_cnh)
+            INSERT INTO motoristas (cpf_cnpj, nome, email, num_cnh, data_nascimento, pontos_cnh, validade_cnh)
 
-            VALUES (?, ?, ?, ?, ?, ?)
+            VALUES (?, ?, ?, ?, ?, ?, ?)
         ");
 
         $stmt->bind_param(
-            "ssssii",
+            "sssssss",
             $this->cpf_cnpj,
             $this->name,
             $this->email,
             $this->num_cnh,
-            $this->idade,
-            $this->pontos_cnh
+            $this->data_nascimento,
+            $this->pontos_cnh,
+            $this->validade_cnh
         );
 
         $stmt->execute();

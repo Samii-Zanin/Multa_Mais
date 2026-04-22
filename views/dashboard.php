@@ -36,7 +36,9 @@ require_once __DIR__ . '/../auth/verificar_login.php';
             <?php echo htmlspecialchars($_SESSION['policial_nome'] ?? 'Agente');
             ?>
           </div>
-          <div class="agent-role">Agente Autenticado</div>
+          <div class="agent-role">Identificador do Agente:
+          <?php echo htmlspecialchars($_SESSION['policial_id'] ?? 'Identificador não encontrado');
+            ?></div>
         </div>
         <a href="../auth/logout.php" class="logout-btn">Encerrar Sessão</a>
       </div>
@@ -169,12 +171,12 @@ require_once __DIR__ . '/../auth/verificar_login.php';
                     <input type="text" name="pontos_cnh" placeholder="Máximo: 40" required>
                 </div>
                 <div class="field">
-                    <label>Idade</label>
-                    <input type="number" name="idade" placeholder="Ex: 34" min="18" max="100" required>
+                    <label>Data de Nascimento</label>
+                    <input type="date" name="data_nascimento" placeholder="Ex: 01/01/200" min="18" max="100" required>
                 </div>
                 <div class="field">
-                    <label>Pontos na CNH</label>
-                    <input type="number" name="pontos_cnh" placeholder="Ex: 40" min="1" max="40" required>
+                    <label>Validade CNH</label>
+                    <input type="date" name="validade_cnh" placeholder="Ex: 01/30/2029" min="1" max="40" required>
                 </div>
             </div>
 
@@ -236,33 +238,33 @@ require_once __DIR__ . '/../auth/verificar_login.php';
             <div class="grid-2">
                 <div class="field full">
                     <label>CPF do Motorista</label>
-                    <input type="text" name="cpf" placeholder="000.000.000-00" required>
+                    <input type="text" name="cpf_cnh" placeholder="000.000.000-00" required>
                 </div>
                 <div class="field">
                     <label>Placa do Carro </label>
-                    <input type="text" name="placa" placeholder="ABC-1234" required>
+                    <input type="text" name="placa_veiculo" placeholder="ABC-1234" required>
                 </div>
                 <div class="field">
-                    <label>Identificador do Multante</label>
-                    <input type="text" name="identificador_multante" placeholder="Código ID ( canto superior direito )" required>
+                  <label>Tipo de Infração</label>
+                  <input type="text" name="tipo_infracao" placeholder="Tipo de infração" required>
+                </div>
+                <div class="field">
+                  <label>UF da Ocorrência</label>
+                  <input type="text" name="uf" placeholder="EX: SP/RS/PR" required>
+                </div>
+                <div class="field">
+                  <label>Endereço da Ocorrência</label>
+                  <input type="text" name="endereco" placeholder="Endereço" required>
+                </div>
+                <div class="field">
+                  <label>Descrição</label>
+                  <input type="text" name="descricao" placeholder="Descrição da infração" required>
                 </div>
                 <div class="field">
                     <label>Valor</label>
-                    <input type="number" name="valor" placeholder="00,00" step="0.01" required>
+                    <input type="number" name="valor_multa" placeholder="00,00" step="0.01" required>
                 </div>
-                <div class="field">
-                    <label>Tipo de Infração</label>
-                    <input type="text" name="tipo_infracao" placeholder="Tipo de infração" required>
-                </div>
-                <div class="field">
-                    <label>Descrição</label>
-                    <input type="text" name="descricao" placeholder="Descrição da infração" required>
-                </div>
-                <div class="field">
-                    <label>Local da Ocorrência</label>
-                    <input type="text" name="local" placeholder="Estado/ Cidade / Endereço" required>
-                </div>
-            </div>
+              </div>
 
             <button type="submit" class="btn-primary">Registrar Multa</button>
         </form>

@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $placa    = $_POST['placa'];
     $ano = (int) $_POST['ano'];
     $motorista_id = Motorista::getIdByCpfOrCnh($_POST['cpf_cnh']);
-     if ($motorista_id === null) {
+    if ($motorista_id === null) {
         $erro_motorista = "Motorista não encontrado. Verifique o CPF/CNPJ e CNH.";
         header("Location: ../views/errors/erroMotorista.php?erro=" . urlencode($erro_motorista));
         exit();
@@ -20,8 +20,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $carro = new Carro($modelo, $marca, $placa, $ano, $motorista_id);
     $resultado = $carro->save();
-    var_dump($resultado);
-    die();
 
     if ($resultado === true) {
         header("Location: ../views/sucess/sucessVeiculo.php");

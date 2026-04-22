@@ -35,6 +35,27 @@ class Carro {
         $this->motorista = $motorista;
     }
 
+    public static function getIdByPlaca(string $placa){
+
+        $conexao = Conexao::getConexao();
+    
+        $stmt = $conexao->prepare("
+            SELECT id FROM carros WHERE placa = ? LIMIT 1
+        ");
+        $stmt->bind_param("s", $placa);
+        $stmt->execute();
+        $resultado = $stmt->get_result();
+        $stmt->close();
+
+        if ($resultado->num_rows == 1){
+            $dados = $resultado->fetch_assoc();
+            return $dados["id"];
+        }
+       
+        return null;
+        
+    }
+
     public function save(){
         $conexao = Conexao::getConexao();
 

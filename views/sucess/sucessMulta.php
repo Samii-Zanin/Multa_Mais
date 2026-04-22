@@ -5,7 +5,7 @@
 <head>
     <meta charset='UTF-8'>
     <meta http-equiv='refresh' content='5;url=../dashboard.php'>
-    <title>SRMV — Veículo Cadastrado</title>
+    <title>SRMV — Multa Cadastrada</title>
     <link href='https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500&display=swap' rel='stylesheet'>
     <style>
         :root { --bg: #0a0c0f; --surface: #111318; --border: #1e2330; --accent: #1a6fff; --success: #27ae60; --text: #e2e6ef; --muted: #5a6478; }
@@ -34,8 +34,8 @@
             <svg viewBox='0 0 24 24'><path d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/></svg>
         </div>
         <div class='tag'>// Registro Confirmado</div>
-        <h1>Veículo Cadastrado</h1>
-        <p>O veículo foi registrado com sucesso no sistema.<br>Redirecionando para o painel...</p>
+        <h1>Multa Cadastrada</h1>
+        <p>A multa foi registrada com sucesso no sistema.<br>Redirecionando para o painel...</p>
         <div class='progress-bar'><div class='progress-fill'></div></div>
         <div class='redirect-msg'>Redirecionando em 5 segundos</div>
         <a href='../dashboard.php'>Ir agora →</a>

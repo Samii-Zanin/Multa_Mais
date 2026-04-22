@@ -10,9 +10,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email      = $_POST['email'];
     $num_cnh    = $_POST['num_cnh'];
     $pontos_cnh = (int) $_POST['pontos_cnh'];
-    $idade      = (int) $_POST['idade'];
+    $data_nascimento     = $_POST['data_nascimento'];
+    $validade_cnh     = $_POST['validade_cnh'];
 
-    $motorista = new Motorista($cpf_cnpj, $name, $email, $num_cnh, $pontos_cnh, $idade);
+    $motorista = new Motorista($cpf_cnpj, $name, $email, $num_cnh, $pontos_cnh, $data_nascimento, $validade_cnh);
     $resultado = $motorista->save();
 
      if ($resultado === true) {

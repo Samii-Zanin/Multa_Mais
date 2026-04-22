@@ -4,7 +4,7 @@
 <html lang='pt-BR'>
 <head>
     <meta charset='UTF-8'>
-    <meta http-equiv='refresh' content='5;url=../views/dashboard.php'>
+    <meta http-equiv='refresh' content='5;url=../dashboard.php'>
     <title>SRMV — Motorista Cadastrado</title>
     <link href='https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500&display=swap' rel='stylesheet'>
     <style>

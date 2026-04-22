@@ -13,7 +13,9 @@ class Multa {
     private $tipo_infracao;
     private $descricao;
     private $data;
-    private $local;
+    private $uf;
+    private $endereco;
+
 
     public function __construct(
         int $id_motorista,
@@ -22,7 +24,8 @@ class Multa {
         float $valor,
         string $tipo_infracao,
         string $descricao,
-        string $local
+        string $uf,
+        string $endereco
 
     ){
         $this->id_motorista = $id_motorista;
@@ -31,7 +34,8 @@ class Multa {
         $this->valor = $valor;
         $this->tipo_infracao = $tipo_infracao;
         $this->descricao = $descricao;
-        $this->local = $local;
+        $this->uf = $uf;
+        $this->endereco = $endereco;
     }
 
 
@@ -97,20 +101,21 @@ class Multa {
         $conexao = Conexao::getConexao();
 
         $stmt = $conexao->prepare("
-            INSERT INTO multa (id_motorista, id_carro, id_policial, valor, tipo_infracao, descricao, local)
+            INSERT INTO multa (id_motorista, id_carro, id_policial, valor, tipo_infracao, descricao, uf, endereco)
 
-            VALUES (?, ?, ?, ?, ?, ?, ?)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?)
         ");
 
         $stmt->bind_param(
-            "iiidsss",
+            "iiidssss",
             $this->id_motorista,
             $this->id_carro,
             $this->id_policial,
             $this->valor,
             $this->tipo_infracao,
             $this->descricao,
-            $this->local
+            $this->uf,
+            $this->endereco
         );
 
         $stmt->execute();
@@ -118,6 +123,7 @@ class Multa {
         $this->id = $conexao->insert_id;
 
         $stmt->close();
+        return true;
     }
 
 }
