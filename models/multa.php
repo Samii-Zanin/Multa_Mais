@@ -15,6 +15,8 @@ class Multa {
     private $data;
     private $uf;
     private $endereco;
+    private $data_vencimento;
+    private $status;
 
 
     public function __construct(
@@ -25,7 +27,9 @@ class Multa {
         string $tipo_infracao,
         string $descricao,
         string $uf,
-        string $endereco
+        string $endereco,
+        string $data_vencimento = null,
+        string $status = 'Pendente'
 
     ){
         $this->id_motorista = $id_motorista;
@@ -36,6 +40,8 @@ class Multa {
         $this->descricao = $descricao;
         $this->uf = $uf;
         $this->endereco = $endereco;
+        $this->data_vencimento = $data_vencimento;
+        $this->status = $status;
     }
 
 
@@ -87,11 +93,11 @@ class Multa {
         return $this->data;
     }
 
-    public function setLocal(string $local){
-        $this->local = $local;
+    public function setEndereco(string $endereco){
+        $this->endereco = $endereco;
     }
-    public function getLocal(){
-        return $this->local;
+    public function getEndereco(){
+        return $this->endereco;
     }
 
     public function getId(){
@@ -101,13 +107,13 @@ class Multa {
         $conexao = Conexao::getConexao();
 
         $stmt = $conexao->prepare("
-            INSERT INTO multa (id_motorista, id_carro, id_policial, valor, tipo_infracao, descricao, uf, endereco)
+            INSERT INTO multa (id_motorista, id_carro, id_policial, valor, tipo_infracao, descricao, uf, endereco, data_vencimento, status)
 
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         ");
 
         $stmt->bind_param(
-            "iiidssss",
+            "iiidssssss",
             $this->id_motorista,
             $this->id_carro,
             $this->id_policial,
@@ -115,7 +121,9 @@ class Multa {
             $this->tipo_infracao,
             $this->descricao,
             $this->uf,
-            $this->endereco
+            $this->endereco,
+            $this->data_vencimento,
+            $this->status
         );
 
         $stmt->execute();
